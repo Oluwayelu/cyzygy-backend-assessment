@@ -37,7 +37,7 @@ class AuthService {
     if (isEmpty(userData)) throw new HttpException(400, 'userData is empty');
 
     const findUser: IUser = await this.users.findOne({ email: userData.email });
-    if (!findUser) throw new HttpException(401, `User does not exist`);
+    if (!findUser) throw new HttpException(401, `Email/Password is incorrect`);
 
     const isPasswordMatching: boolean = await compare(
       userData.password,
