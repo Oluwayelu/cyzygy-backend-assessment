@@ -22,6 +22,7 @@ class UserController {
       const profilePhoto = req.file
         ? `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
         : undefined;
+      console.log('Profile photo: ', profilePhoto);
 
       const data = await this.userService.addUser(userData, body, profilePhoto);
 
