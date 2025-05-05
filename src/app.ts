@@ -80,7 +80,11 @@ class App {
     // Serve the uploads folder as static
     this.app.use(
       '/uploads',
-      express.static(path.join(process.cwd(), 'uploads'))
+      express.static(
+        NODE_ENV === 'development'
+          ? path.join(process.cwd(), 'uploads')
+          : path.join('/opt/render/project/src/uploads')
+      )
     );
   }
 

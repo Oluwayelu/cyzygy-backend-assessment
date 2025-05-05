@@ -1,9 +1,15 @@
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import { NODE_ENV } from '@/config';
 
+// NODE_ENV
 // Ensure the uploads directory exists
-const uploadsDir = path.join(process.cwd(), 'uploads');
+const uploadsDir =
+  NODE_ENV === 'development'
+    ? path.join(process.cwd(), 'uploads')
+    : path.join('/opt/render/project/src/uploads');
+
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
