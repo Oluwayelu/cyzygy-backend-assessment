@@ -80,6 +80,12 @@ class App {
     // Serve the uploads folder as static
     this.app.use(
       '/uploads',
+      (req, res, next) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        next();
+      },
       express.static(
         NODE_ENV === 'development'
           ? path.join(process.cwd(), 'uploads')
