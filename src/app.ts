@@ -95,12 +95,12 @@ class App {
       swaggerDefinition: {
         openapi: '3.0.0',
         info: {
-          title: 'Excite Trade REST API',
+          title: 'Cyzygy API docs',
           version: '1.0.0',
-          description: 'Example docs',
+          description: 'A Cyzygy backend assessement API docs',
           contact: {
             name: 'Oluwayelu Ifeoluwa',
-            email: 'ife.oluwayelu@exciteafrica.com',
+            email: 'oluwayeluifeoluwa@gmail.com',
           },
         },
         servers: [
@@ -109,7 +109,7 @@ class App {
             description: 'Local server',
           },
           {
-            url: 'https://excite-trade-api-production.up.railway.app/api/v1',
+            url: 'https://cyzygy-backend-assessment.onrender.com/api/v1',
             description: 'Live server',
           },
         ],
