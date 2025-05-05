@@ -19,7 +19,11 @@ class UserController {
     try {
       const userData = req.user;
       const body = req.body;
-      const data = await this.userService.addUser(userData, body);
+      const profilePhoto = req.file
+        ? `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+        : undefined;
+
+      const data = await this.userService.addUser(userData, body, profilePhoto);
 
       res.status(200).json({ data, message: 'User added successfully' });
     } catch (error) {
@@ -67,7 +71,16 @@ class UserController {
       const userId = req.params.userId;
       const userData = req.user;
       const body = req.body;
-      const data = await this.userService.updateUser(userData, userId, body);
+      const profilePhoto = req.file
+        ? `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`
+        : undefined;
+
+      const data = await this.userService.updateUser(
+        userData,
+        userId,
+        body,
+        profilePhoto
+      );
 
       res.status(200).json({ data, message: 'User updated successfully' });
     } catch (error) {

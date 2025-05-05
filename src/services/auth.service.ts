@@ -77,7 +77,7 @@ class AuthService {
   public createToken(user: IUser): TokenData {
     const dataStoredInToken: DataStoredInToken = { _id: user._id };
     const secretKey: string = SECRET_KEY;
-    const expiresIn: number = 60 * 60;
+    const expiresIn: number = 7 * 24 * 60 * 60;
 
     return {
       expiresIn,

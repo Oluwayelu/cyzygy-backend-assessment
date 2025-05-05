@@ -10,6 +10,7 @@ import {
   getUserSchema,
   updateUserSchema,
 } from '@/validator/user.validator';
+import upload from '@/middlewares/upload.middleware';
 
 /**
  * @swagger
@@ -126,6 +127,7 @@ class UserRoute implements Routes {
     this.router.post(
       this.path,
       authMiddleware,
+      upload.single('profilePhoto'),
       ValidationMiddleware(addUserSchema),
       this.userController.addUser
     );
@@ -206,6 +208,7 @@ class UserRoute implements Routes {
     this.router.put(
       `${this.path}/:userId`,
       authMiddleware,
+      upload.single('profilePhoto'),
       ValidationMiddleware(updateUserSchema),
       this.userController.updateUser
     );

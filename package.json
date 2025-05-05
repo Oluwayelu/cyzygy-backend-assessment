@@ -1,7 +1,7 @@
 {
-  "name": "excite-trade",
+  "name": "cyzygy-backend",
   "version": "1.0.0",
-  "description": "a service for the excite trade application",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "npm run build && cross-env NODE_ENV=production node dist/src/index.js",
@@ -52,6 +52,7 @@
     "@types/jest": "^29.5.14",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/mongoose": "^5.11.97",
+    "@types/multer": "^1.4.12",
     "@types/node": "^22.10.2",
     "@types/socket.io": "^3.0.2",
     "@types/supertest": "^6.0.2",

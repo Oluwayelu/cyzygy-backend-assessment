@@ -1,3 +1,4 @@
+import path from 'path';
 import compression from 'compression';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
@@ -75,6 +76,12 @@ class App {
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cookieParser());
+
+    // Serve the uploads folder as static
+    this.app.use(
+      '/uploads',
+      express.static(path.join(__dirname, '../uploads'))
+    );
   }
 
   private initializeRoutes(routes: Routes[]) {

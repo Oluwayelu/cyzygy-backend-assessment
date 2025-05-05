@@ -7,11 +7,15 @@ import { dummyUsers } from '@/utils/constants';
 class UserService {
   public users = User;
 
-  public async addUser(userData: IUser, body: addUserDto['body']) {
+  public async addUser(
+    userData: IUser,
+    body: addUserDto['body'],
+    profilePhoto: string | undefined
+  ) {
     if (userData.role !== 'admin')
       throw new HttpException(401, 'Unauthorized to perform this operation');
 
-    const findUser = await this.users.findOne({ email: userData.email });
+    const findUser = await this.users.findOne({ email: body.email });
     if (findUser)
       throw new HttpException(409, `This email ${body.email} already exists`);
 
@@ -20,6 +24,7 @@ class UserService {
     const user = await this.users.create({
       ...body,
       name,
+      profilePhoto,
       password: hashedPassword,
     });
 
@@ -48,7 +53,8 @@ class UserService {
   public async updateUser(
     userData: IUser,
     userId: string,
-    body: updateUserDto['body']
+    body: updateUserDto['body'],
+    profilePhoto: string | undefined
   ) {
     if (userData.role !== 'admin')
       throw new HttpException(401, 'Unauthorized to perform this operation');
@@ -62,7 +68,11 @@ class UserService {
         ? `${body.firstName} ${body.lastName}`
         : user.name;
     user.role = body.role || user.role;
-    return user;
+    user.profilePhoto = profilePhoto || user.profilePhoto;
+
+    const updatedUser = await user.save();
+
+    return updatedUser;
   }
 
   public async deleteUser(userData: IUser, userId: string) {
