@@ -48,8 +48,12 @@ import upload from '@/middlewares/upload.middleware';
  *           description: User's email address
  *         role:
  *           type: string
- *           enum: [Admin, User, Guest]
+ *           enum: [admin, user]
  *           description: User's role
+ *         profilePhoto:
+ *           type: string
+ *           format: binary
+ *           description: Profile photo of the user
  *       example:
  *         firstName: John
  *         lastName: Doe
@@ -75,8 +79,12 @@ import upload from '@/middlewares/upload.middleware';
  *           description: User's email address
  *         role:
  *           type: string
- *           enum: [Admin, User, Guest]
+ *           enum: [admin, user]
  *           description: User's role
+ *         profilePhoto:
+ *           type: string
+ *           format: binary
+ *           description: Profile photo of the user
  *       example:
  *         firstName: Jane
  *         lastName: Smith
@@ -115,7 +123,7 @@ class UserRoute implements Routes {
      *     requestBody:
      *       required: true
      *       content:
-     *         application/json:
+     *         multipart/form-data:
      *           schema:
      *             $ref: '#/components/schemas/AddUserRequest'
      *     responses:
@@ -194,7 +202,7 @@ class UserRoute implements Routes {
      *     requestBody:
      *       required: true
      *       content:
-     *         application/json:
+     *         multipart/form-data:
      *           schema:
      *             $ref: '#/components/schemas/UpdateUserRequest'
      *     responses:
