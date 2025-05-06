@@ -36,7 +36,9 @@ class UserService {
     if (userData.role !== 'admin')
       throw new HttpException(401, 'Unauthorized to perform this operation');
 
-    const users = await this.users.find({});
+    const users = await this.users.find({}).sort({
+      updatedAt: -1,
+    });
     return users;
   }
 
