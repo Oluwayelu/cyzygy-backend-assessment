@@ -1,6 +1,6 @@
 # Cyzygy Backend Assessment
 
-This repository contains a RESTful API built as part of the **Cyzygy** fullstack assessment. It features an admin user management system where authenticated users can create, update, and delete posts and comments.
+This repository contains a RESTful API built as part of the **Cyzygy** fullstack assessment. It features an admin user management system where authenticated users can add, update, and delete users.
 
 ## 🚀 Features
 
